@@ -1,0 +1,32 @@
+<h3>Add Comment</h3>
+<form>
+    <div class="form-group">
+        <p>Pick a Fruit</p>
+        <ul class="horizontal-fruits">
+            <li *ngFor="let fruit of fruits" title="{{ fruit.description }}">
+                <label>{{ fruit.name }}</label>
+                <img width="120px" src="{{ fruit.photoUrl }}" alt="{{ fruit.name }}"/>
+                <input type="radio" [(ngModel)]="newComment.fruitId" name="fruitId" value="{{fruit.id}}" />
+            </li>
+            
+        </ul>
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input [(ngModel)]="newComment.author" type="text" name="author" placeholder="Enter Full Name"/>
+    </div> 
+    <div class="form-group">
+        <label for="rating">Rating (1-Dislike, 5 - Love)</label>
+        <select [(ngModel)]="newComment.rating" name="rating">
+            <option *ngFor="let num of [1,2,3,4,5]" value="{{ num }}">{{ num }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea [(ngModel)]="newComment.comment" name="comment" placeholder="Enter comment here"></textarea>
+    </div>
+    <div class="form-group">
+        <button (click)="addComment()" type="button">Add Comment</button>
+        <button type="reset">Clear</button>
+    </div>
+</form>
